@@ -38,4 +38,4 @@
 - Actions
     - Start a program
     - Program/Script: `ipfix.exe`
-    - Argument: `github.com www.github.com gist.github.com`
+    - Argument: `github.com www.github.com`
