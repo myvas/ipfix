@@ -1,4 +1,4 @@
-[中文](README.md) | English
+[中文](./README.md) | English
 
 # ipfix
 A tool to retrive IP address from [ipaddress.com](https://www.ipaddress.com), and save the record in the `hosts` file.
@@ -27,5 +27,5 @@ Use `ipfix github.com` to update the following kind-of record in the `hosts` fil
     - Every N minutes
 - Actions
     - Start a program
-    - Program/Script: `Powershell.exe`
-    - Argument: `-ExecutionPolicy Bypass C:\Windows\system32\drivers\etc\myvas-fix-github-ipaddress.ps1`
+    - Program/Script: `ipfix.exe`
+    - Argument: `github.com www.github.com`
