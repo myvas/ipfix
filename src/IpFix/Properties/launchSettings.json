@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Myvas.Tools.IpFix": {
+      "commandName": "Project",
+      "commandLineArgs": "gmail.com"
+    }
+  }
+}
