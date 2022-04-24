@@ -1,4 +1,4 @@
-中文 | [English](README.en.md)
+中文 | [English](./README.en.md)
 
 # ipfix
 一个工具(控制台程序)：指定一个域名，程序将从外网获取IP地址，更新本机hosts文件，并刷新DNS缓存。非常地好用！
@@ -37,5 +37,5 @@
     - Every N minutes
 - Actions
     - Start a program
-    - Program/Script: `Powershell.exe`
-    - Argument: `-ExecutionPolicy Bypass C:\Windows\system32\drivers\etc\myvas-fix-github-ipaddress.ps1`
+    - Program/Script: `ipfix.exe`
+    - Argument: `github.com www.github.com gist.github.com`
