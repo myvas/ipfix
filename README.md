@@ -49,6 +49,11 @@ _注意：这个IP地址只是一个示例，事实上github.com的IP地址很�
 * 由于`hosts`文件写入须提权，因此本程序须运行在管理员模式。
 * 若当前窗口不是管理员模式，则程序自动开新窗口运行在管理员模式，执行完成后自动关闭窗口。此时，您很可能看不到执行结果，除非(1)没有带参数，或(2)没有查到IP地址，或(3)程序执行过程中发生异常。这样设计的主体思想是：发号施令者（就是您啦）发出指令后，直接看结果（能不能用，好不好用），除非结果不好才有调查研究的必要。
 
+---
+
+![Alt](docs/screenshots/screenshot-multiple-domains.png "ipfix notepad-plus-plus.org github.global.ssl.fastly.net gmail.com cdnjs.cloudflare.com")
+上图中执行`ipfix notepad-plus-plus.org github.global.ssl.fastly.net gmail.com cdnjs.cloudflare.com`：本程序将依次查询这些域名的IP地址并更新。
+
 ## 定时任务
 您也可以使用`Windows``任务计划程序`配置定时执行的任务（建议每小时，或由某事件触发）。配置操作请参考：[如何配置Windows任务计划](https://community.spiceworks.com/how_to/17736-run-powershell-scripts-from-task-scheduler)。  
 
