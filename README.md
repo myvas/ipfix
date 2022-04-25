@@ -32,7 +32,7 @@
 上图中执行`ipfix github.com`：将在`hosts`文件中更新(若无则新增)一条记录：  
 *C:\Windows\system32\drivers\etc\hosts*
 ```
-    140.82.113.4 github.com
+140.82.113.4 github.com
 ```
 
 ---
