@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/myvas/ipfix</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <LangVersion>latest</LangVersion>
+    <Product>Myvas.Tools</Product>
+    <Copyright>Copyright (c) $([System.DateTime]::Now.Year) Myvas Foundation</Copyright>
+  </PropertyGroup>
+
+  <!-- nuget package -->
+  <PropertyGroup>
+    <PackageProjectUrl>https://github.com/myvas/ipfix</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Myvas</Authors>
+    <MaintainerEmail>4848285@qq.com</MaintainerEmail>
+  </PropertyGroup>
+
+  <!-- Versioning -->
+  <PropertyGroup>
+    <MinVerVersion>6.0.3</MinVerVersion>
+    <MinVerDefaultPreReleasePhase>alpha</MinVerDefaultPreReleasePhase>
+  </PropertyGroup>
+  <Target Name="SetFileVersion" AfterTargets="MinVer">
+    <PropertyGroup>
+      <FileVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$([System.DateTime]::Now.AddYears(-2021).ToString("yMMdd"))</FileVersion>
+    </PropertyGroup>
+  </Target>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  
+</Project>
