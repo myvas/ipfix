@@ -41,8 +41,8 @@ public static class Program
                 Console.WriteLine("Step 3: Run `ipconfig /flushdns`");
                 Console.WriteLine();
                 Console.WriteLine("Examples:");
-                Console.WriteLine("  \"ipfix github.com\" - will update the IP address of github.com in the *hosts* file.");
-                Console.WriteLine("  \"ipfix github.com www.github.com\" - will update the IP address of github.com and www.github.com in the *hosts* file.");
+                Console.WriteLine("  \"ipfix github.com\" - will update the IP address of github.com in the `hosts` file.");
+                Console.WriteLine("  \"ipfix github.com www.github.com\" - will update the IP address of github.com and www.github.com in the `hosts` file.");
                 Console.WriteLine();
                 Console.WriteLine("Press any key to exit...");
                 Console.ReadKey();
