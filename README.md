@@ -65,4 +65,4 @@ _注意：这个IP地址只是一个示例，事实上github.com的IP地址很�
 
 ## 问题反馈
 * 欢迎[新开Issue](https://github.com/myvas/ipfix/issues)报告故障、提出建议或意见。
-* 欢迎[Fork](https://github.com/myvas/ipfix/fork)及[PR (Pull Requests)](https://github.com/myvas/ipfix/compare)奉献您的劳动成果^_^
+* 欢迎[Fork](https://github.com/myvas/ipfix/fork)及PR (Pull Requests)奉献您的劳动成果^_^
