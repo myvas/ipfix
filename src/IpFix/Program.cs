@@ -34,8 +34,12 @@ public static class Program
 
             if (args.Length == 0)
             {
-                Console.WriteLine("Usage: ipfix [domain-name-1] [domain-name-2] ... [domain-name-n]");
+                Console.WriteLine("Usage: ipfix [Option] [domain-name-1] [domain-name-2] ... [domain-name-n]");
                 Console.WriteLine();
+                Console.WriteLine("[Option]");
+                Console.WriteLine("  -q|--quiet    Run in quiet mode.");
+                Console.WriteLine();
+                Console.WriteLine("Description:");
                 Console.WriteLine("Step 1: Fetch the IP address from a resolver on the outernet;");
                 Console.WriteLine("Step 2: Add or update the record in the `hosts` file");
                 Console.WriteLine("Step 3: Run `ipconfig /flushdns`");
@@ -60,14 +64,20 @@ public static class Program
         }
         finally
         {
-            //try
-            //{
-            //    var isInConsole = Console.CursorLeft >= int.MinValue;
-            //    Console.WriteLine();
-            //    Console.WriteLine("Press any key to exit...");
-            //    Console.ReadKey();
-            //}
-            //catch { }
+            if ((args?.Contains("-q") ?? false)
+                || (args?.Contains("--quiet") ?? false))
+            { }
+            else
+            {
+                try
+                {
+                    var isInConsole = Console.CursorLeft >= int.MinValue;
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to exit...");
+                    Console.ReadKey();
+                }
+                catch { }
+            }
         }
     }
 
