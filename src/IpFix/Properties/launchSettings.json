@@ -1,8 +1,11 @@
 {
   "profiles": {
-    "Myvas.Tools.IpFix": {
+    "ipfix github.com": {
       "commandName": "Project",
-      "commandLineArgs": "gmail.com"
+      "commandLineArgs": "github.com"
+    },
+    "ipfix": {
+      "commandName": "Project"
     }
   }
 }
