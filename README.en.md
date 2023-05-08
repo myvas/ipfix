@@ -44,7 +44,7 @@ Press any key to exit...
 Use `ipfix github.com` to update the following kind-of record in the `hosts` file:  
 *C:\Windows\system32\drivers\etc\hosts*
 ```
-140.82.114.4 www.github.com
+140.82.112.3 www.github.com
 ```
 
 ## Program Flow
