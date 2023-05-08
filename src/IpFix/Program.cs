@@ -45,6 +45,9 @@ public static class Program
                 Console.WriteLine("  \"ipfix github.com\" - will update the IP address of github.com in the `hosts` file.");
                 Console.WriteLine("  \"ipfix github.com www.github.com\" - will update the IP address of github.com and www.github.com in the `hosts` file.");
                 Console.WriteLine();
+                Console.WriteLine("Source code: https://github.com/myvas/ipfix.git");
+                Console.WriteLine("License: MIT");
+                Console.WriteLine();
                 Console.WriteLine("Press any key to exit...");
                 Console.ReadKey();
                 return;
