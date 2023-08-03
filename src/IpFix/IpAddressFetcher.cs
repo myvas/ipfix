@@ -1,19 +1,20 @@
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 
 namespace Myvas.Tools.IpFix;
 
-public class IpAddressFetcher
+public class IpAddressFetcher : IFetcher
 {
-    public const string Name = "ipaddress.com";
+    public string Name { get; } = "ipaddress.com";
 
-    public static string RetrieveIpAddress(string dns)
+    public async Task<string> RetrieveIpv4Async(string dns)
     {
         var result = "";
 
         var url = $"https://ipaddress.com/website/{dns}";
 
         var web = new HtmlWeb();
-        var doc = web.Load(url);
+        var doc = await web.LoadFromWebAsync(url);
 
         // Pattern 1: https://ipaddress.com/website/github.com
         try

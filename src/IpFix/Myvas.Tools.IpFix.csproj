@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
+    <PackageReference Include="PuppeteerSharp" Version="10.1.2" />
   </ItemGroup>
 
 </Project>

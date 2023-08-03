@@ -15,7 +15,7 @@ public class HostsFile
     public string FileNamePath { get; private set; }
     public string[] Lines { get; set; }
 
-    public bool UpdateHostsRecord(string dns, string ipAddress, string providerName = IpAddressFetcher.Name)
+    public bool UpdateHostsRecord(string dns, string ipAddress, string providerName = "Myvas.Tools.IpFix")
     {
         var changed = false;
         var oldLine = Lines

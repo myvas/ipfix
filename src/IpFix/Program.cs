@@ -4,12 +4,9 @@ namespace Myvas.Tools.IpFix;
 
 public static class Program
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="args"><code>ipfix github.com</code></param>
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
+        // e.g. ipfix github.com
         var assembly = typeof(Program).Assembly;
         var assemblyName = assembly.GetName().Name;
         var assemblyVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
@@ -60,10 +57,12 @@ public static class Program
                 args = args.Except(new[] { "-q", "--quiet" }).ToArray();
             }
 
+            var allTasks = new List<Task>();
             foreach (var dns in args)
             {
-                if (!dns.StartsWith('-') && !dns.StartsWith('/')) Fix(dns);
+                if (!dns.StartsWith('-') && !dns.StartsWith('/')) allTasks.Add(FixAsync(dns));
             }
+            await Task.WhenAll(allTasks);
 
             if (!quietMode)
             {
@@ -83,29 +82,52 @@ public static class Program
         {
         }
     }
-
-    public static void Fix(string dns)
+    public static async Task FixAsync(string dns)
     {
+        IFetcher fetcher = new IpAddressFetcher();
+        string ipAddress = "";
         try
         {
-            var ipAddress = IpAddressFetcher.RetrieveIpAddress(dns);
+            Console.WriteLine($"Retrieving records via {fetcher.Name}...");
+            ipAddress = await fetcher.RetrieveIpv4Async(dns);
+        }
+        catch
+        {
+            Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher.Name}.");
+        }
+        if (string.IsNullOrWhiteSpace(ipAddress))
+        {
+
+            fetcher = new NslookupIoUsaFetcher();
+            try
+            {
+                Console.WriteLine($"Retrieving records via {fetcher.Name}...");
+                ipAddress = await fetcher.RetrieveIpv4Async(dns);
+            }
+            catch
+            {
+                Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher.Name}.");
+            }
             if (string.IsNullOrWhiteSpace(ipAddress))
             {
-                Console.WriteLine($"No record of '{dns}' be found on {IpAddressFetcher.Name}.");
+                Console.WriteLine($"No record of '{dns}' be found.");
                 return;
             }
-            Console.WriteLine($"The IP address of {dns} is {ipAddress}");
+        }
+        Console.WriteLine($"The IP address of {dns} is {ipAddress}");
 
+        try
+        {
             var hostsFile = new HostsFile();
-            var changed = hostsFile.UpdateHostsRecord(dns, ipAddress, IpAddressFetcher.Name);
+            var changed = hostsFile.UpdateHostsRecord(dns, ipAddress, "Myvas.Tools.IpFix");
             if (!changed)
             {
-                Console.WriteLine($"The record does not need to update.");
+                Console.WriteLine($"The hosts record is up to date.");
                 return;
             }
 
             hostsFile.Write();
-            Console.WriteLine($"{dns} updated to {ipAddress}");
+            Console.WriteLine($"{dns} newly updated to {ipAddress}");
 
             IpConfigHelper.Flushdns();
         }

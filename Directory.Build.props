@@ -17,7 +17,7 @@
 
   <!-- Versioning -->
   <PropertyGroup>
-    <MinVerVersion>6.0.3</MinVerVersion>
+    <MinVerVersion>6.0.4</MinVerVersion>
     <MinVerDefaultPreReleasePhase>alpha</MinVerDefaultPreReleasePhase>
   </PropertyGroup>
   <Target Name="SetFileVersion" AfterTargets="MinVer">
@@ -30,5 +30,5 @@
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
-  
+
 </Project>
