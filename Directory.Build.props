@@ -17,8 +17,8 @@
 
   <!-- Versioning -->
   <PropertyGroup>
-    <MinVerVersion>6.0.5</MinVerVersion>
-    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerVersion>6.0</MinVerVersion>
+    <MinVerDefaultPreReleaseIdentifiers>alpha</MinVerDefaultPreReleaseIdentifiers>
   </PropertyGroup>
   <Target Name="SetFileVersion" AfterTargets="MinVer">
     <PropertyGroup>
