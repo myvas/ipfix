@@ -106,7 +106,7 @@ public static class Program
             }
             catch
             {
-                Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher.Name}.");
+                Console.WriteLine($"Failed to retrieve record of {dns} on {fetcher.Name}.");
             }
             if (string.IsNullOrWhiteSpace(ipAddress))
             {
@@ -127,7 +127,7 @@ public static class Program
             }
 
             hostsFile.Write();
-            Console.WriteLine($"{dns} newly updated to {ipAddress}");
+            Console.WriteLine($"{dns} is updated to {ipAddress}");
 
             IpConfigHelper.Flushdns();
         }
