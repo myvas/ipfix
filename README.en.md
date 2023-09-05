@@ -49,6 +49,25 @@ Use `ipfix github.com` to update the following kind-of record in the `hosts` fil
 
 ## Program Flow
 - Step 1  : Fetch the record of {domain-name} from an IP address resolver on the outernet;");
+- Step 1.1: Resolve via [Best free & Public DNS Servers](https://www.lifewire.com/free-and-public-dns-servers-2626062)
+    
+    |Provider|Primary DNS|Secondary DNS|
+    |-|-|-|
+    |Google|	8.8.8.8|	8.8.4.4|
+    |Control D|	76.76.2.0|	76.76.10.0|
+    |Quad9|	9.9.9.9|	149.112.112.112|
+    |OpenDNS Home|	208.67.222.222|	208.67.220.220|
+    |Cloudflare|	1.1.1.1|	1.0.0.1|
+    |CleanBrowsing|	185.228.168.9|	185.228.169.9|
+    |Alternate DNS|	76.76.19.19|	76.223.122.150|
+    |AdGuard DNS|	94.140.14.14| 94.140.15.15|
+    
+    NOTE: We try the primary DNS only, not secondary DNS; we will try the next provider on failure.
+  
+- Step 1.2: Query from [https://ipaddress.com](https://ipaddress.com).
+
+- Step 1.3: Query from [https://www.nslookup.io/domains/{dns}/dns-records/#usa].
+
 - Step 2.1: Add the new record of {domain-name} in the *hosts* file, ");
 - Step 2.2: Or replace the old record with new one.
 
