@@ -4,6 +4,11 @@ namespace Myvas.Tools.IpFix;
 
 public static class Program
 {
+    static string[] CandidateNameServers = new[] {
+        "8.8.8.8", "76.76.2.0", "9.9.9.9", "208.67.222.222", "1.1.1.1",
+        "185.228.168.9", "76.76.19.19", "94.140.14.14"
+    };
+
     static async Task Main(string[] args)
     {
         // e.g. ipfix github.com
@@ -82,22 +87,57 @@ public static class Program
         {
         }
     }
+
     public static async Task FixAsync(string dns)
     {
-        IFetcher fetcher = new IpAddressFetcher();
         string ipAddress = "";
-        try
+        IFetcher fetcher = new NslookupExeFetcher();
+        // Best free public DNS servers: https://www.lifewire.com/free-and-public-dns-servers-2626062
+
+        foreach (var selectedNameSever in CandidateNameServers)
         {
-            Console.WriteLine($"Retrieving records via {fetcher.Name}...");
-            ipAddress = await fetcher.RetrieveIpv4Async(dns);
+            try
+            {
+                ((NslookupExeFetcher)fetcher).SelectedNameServer = selectedNameSever;
+                Console.WriteLine($"Retrieving records via {fetcher}...");
+                ipAddress = await fetcher.RetrieveIpv4Async(dns);
+                if (!string.IsNullOrWhiteSpace(ipAddress)) break;
+            }
+            catch
+            {
+                Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher}.");
+            }
         }
-        catch
+
+        if (string.IsNullOrWhiteSpace(ipAddress))
         {
-            Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher.Name}.");
+            ((NslookupExeFetcher)fetcher).SelectedNameServer = "";
+            try
+            {
+                Console.WriteLine($"Retrieving records via {fetcher.Name}...");
+                ipAddress = await fetcher.RetrieveIpv4Async(dns);
+            }
+            catch
+            {
+                Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher.Name}.");
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(ipAddress))
+        {
+            fetcher = new IpAddressFetcher();
+            try
+            {
+                Console.WriteLine($"Retrieving records via {fetcher.Name}...");
+                ipAddress = await fetcher.RetrieveIpv4Async(dns);
+            }
+            catch
+            {
+                Console.WriteLine($"Failed while retrieving record for {dns} on {fetcher.Name}.");
+            }
         }
         if (string.IsNullOrWhiteSpace(ipAddress))
         {
-
             fetcher = new NslookupIoUsaFetcher();
             try
             {
