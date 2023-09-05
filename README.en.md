@@ -64,9 +64,9 @@ Use `ipfix github.com` to update the following kind-of record in the `hosts` fil
     
     NOTE: We try the primary DNS only, not secondary DNS; we will try the next provider on failure.
   
-- Step 1.2: Query from [https://ipaddress.com](https://ipaddress.com).
+- Step 1.2: Query from [ipaddress.com](https://ipaddress.com/website/github.com).
 
-- Step 1.3: Query from [https://www.nslookup.io/domains/{dns}/dns-records/#usa].
+- Step 1.3: Query from [nslookup.io](https://www.nslookup.io/domains/github.com/dns-records/#usa).
 
 - Step 2.1: Add the new record of {domain-name} in the *hosts* file, ");
 - Step 2.2: Or replace the old record with new one.
