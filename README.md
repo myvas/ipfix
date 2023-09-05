@@ -26,9 +26,9 @@
     
     注意：本程序依次尝试主DNS服务器查询，若失败则换下一个服务提供商。
 
-2. 从[https://ipaddress.com](https://ipaddress.com)上查询IP地址。
+2. 从[ipaddress.com]([https://ipaddress.com](https://ipaddress.com/website/github.com)上查询IP地址。
 
-3. 从[https://www.nslookup.io/domains/{dns}/dns-records/#usa]上查询IP地址。
+3. 从[nslookup.io](https://www.nslookup.io/domains/github.com/dns-records/#usa)上查询IP地址。
 
 ## 应用场景
 - 国内直接`ping`到的IP地址经常无法正常访问国外网站，原因是`域名被劫持`，此时，您可能需要本程序。
