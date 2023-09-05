@@ -9,10 +9,24 @@
 - 第3步：刷新DNS缓存。
 
 ## IP地址查询方法
-本程序从[https://ipaddress.com](https://ipaddress.com)上查询IP地址。
+1. 从DNS服务提供商查询IP地址。
+[Best free & Public DNS Servers](https://www.lifewire.com/free-and-public-dns-servers-2626062)
+|Provider|Primary DNS|Secondary DNS|
+|-|-|-|
+|Google|	8.8.8.8|	8.8.4.4|
+|Control D|	76.76.2.0|	76.76.10.0|
+|Quad9|	9.9.9.9|	149.112.112.112|
+|OpenDNS Home|	208.67.222.222|	208.67.220.220|
+|Cloudflare|	1.1.1.1|	1.0.0.1|
+|CleanBrowsing|	185.228.168.9|	185.228.169.9|
+|Alternate DNS|	76.76.19.19|	76.223.122.150|
+|AdGuard DNS|	94.140.14.14| 94.140.15.15|
 
-* 正在考虑：是否改为从某一固定（根）域名服务器进行查询。
-* 未来某天也许可以考虑：是否改为从多个（根）域名服务器中选取较快速的服务器进行查询，这些服务器可由社区投票决策。
+注意：本程序依次尝试主DNS服务器查询，若失败则换下一个服务提供商。
+
+2. 从[https://ipaddress.com](https://ipaddress.com)上查询IP地址。
+
+3. 从[https://www.nslookup.io/domains/{dns}/dns-records/#usa]上查询IP地址。
 
 ## 应用场景
 - 国内直接`ping`到的IP地址经常无法正常访问国外网站，原因是`域名被劫持`，此时，您可能需要本程序。
