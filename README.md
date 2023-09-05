@@ -26,7 +26,7 @@
     
     注意：本程序依次尝试主DNS服务器查询，若失败则换下一个服务提供商。
 
-2. 从[ipaddress.com]([https://ipaddress.com](https://ipaddress.com/website/github.com)上查询IP地址。
+2. 从[ipaddress.com](https://ipaddress.com/website/github.com)上查询IP地址。
 
 3. 从[nslookup.io](https://www.nslookup.io/domains/github.com/dns-records/#usa)上查询IP地址。
 
