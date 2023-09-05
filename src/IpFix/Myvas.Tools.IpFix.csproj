@@ -7,6 +7,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <!--<Nullable>enable</Nullable>-->
     <Applicationmanifest>app.manifest</Applicationmanifest>
+    <Authors>FrankH &lt;4848285@qq.com&gt;</Authors>
+    <Company>Myvas Foundation</Company>
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
   </PropertyGroup>
 
   <ItemGroup>

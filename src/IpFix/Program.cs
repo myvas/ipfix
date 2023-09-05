@@ -1,13 +1,56 @@
+using System.Diagnostics;
 using System.Reflection;
 
 namespace Myvas.Tools.IpFix;
 
 public static class Program
 {
+    /// <summary>
+    /// Best free public DNS servers: https://www.lifewire.com/free-and-public-dns-servers-2626062
+    /// </summary>
     static string[] CandidateNameServers = new[] {
         "8.8.8.8", "76.76.2.0", "9.9.9.9", "208.67.222.222", "1.1.1.1",
         "185.228.168.9", "76.76.19.19", "94.140.14.14"
     };
+
+    static List<string> ReadNameServersFromFile()
+    {
+        var result = new List<string>();
+        var path = AppDomain.CurrentDomain.BaseDirectory;
+        Debug.WriteLine(path);
+        var filename = Path.Combine(path, "ipfix.data");
+        try
+        {
+            using var sr = new StreamReader(filename);
+            string line = null;
+            while ((line = sr.ReadLine()) != null)
+            {
+                result.Add(line);
+            }
+            sr.Close();
+        }
+        catch { }
+        var count = result.Count;
+        if (count < 2)
+        {
+            result = new List<string>(CandidateNameServers);
+            count = result.Count;
+        }
+        try
+        {
+            var sw = new StreamWriter(filename);
+            for (var i = 1; i < count; i++)
+            {
+                sw.WriteLine(result[i]);
+            }
+            sw.WriteLine(result[0]);
+            sw.Close();
+        }
+        catch
+        {
+        }
+        return result;
+    }
 
     static async Task Main(string[] args)
     {
@@ -83,22 +126,21 @@ public static class Program
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
-        finally
-        {
-        }
     }
 
     public static async Task FixAsync(string dns)
     {
         string ipAddress = "";
         IFetcher fetcher = new NslookupExeFetcher();
-        // Best free public DNS servers: https://www.lifewire.com/free-and-public-dns-servers-2626062
 
-        foreach (var selectedNameSever in CandidateNameServers)
+        var candidateNameServers = ReadNameServersFromFile();
+        var count = candidateNameServers.Count;
+        for (var i = 0; i < count; i++)
         {
+            if (i != 0) candidateNameServers = ReadNameServersFromFile();
             try
             {
-                ((NslookupExeFetcher)fetcher).SelectedNameServer = selectedNameSever;
+                ((NslookupExeFetcher)fetcher).SelectedNameServer = candidateNameServers[0];
                 Console.WriteLine($"Retrieving records via {fetcher}...");
                 ipAddress = await fetcher.RetrieveIpv4Async(dns);
                 if (!string.IsNullOrWhiteSpace(ipAddress)) break;
