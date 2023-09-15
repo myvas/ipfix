@@ -1,7 +1,7 @@
 [中文](./README.md) | English
 
 # ipfix
-A tool to retrive IP address from [ipaddress.com](https://www.ipaddress.com), and save the record in the `hosts` file.
+A command-line utility to update DNS records in the `hosts` file with the IP address from the 'Outernet'.
 
 ## Usage  
 <pre style="background-color:black;color:white;">
